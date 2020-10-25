@@ -3,7 +3,7 @@ name: Build and Publish eGeoffrey Package
 on:
   push:
     tags-ignore:
-      - '**'
+      - '*.*'
   pull_request: 
   workflow_dispatch:
       
