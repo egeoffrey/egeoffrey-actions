@@ -27,7 +27,7 @@ jobs:
 
       - name: Install eGeoffrey
         run: | 
-          sudo EGEOFFREY_INSTALL_DIRECTORY=$(pwd)/egeoffrey EGEOFFREY_SETUP_REMOTE=n bash -c "$(curl -ssL https://get.egeoffrey.com)"
+          sudo EGEOFFREY_INSTALL_DIRECTORY=/tmp/egeoffrey EGEOFFREY_SETUP_REMOTE=n bash -c "$(curl -ssL https://get.egeoffrey.com)"
 
       - name: Build the eGeoffrey Package
         run: | 
@@ -35,18 +35,18 @@ jobs:
 
       - name: Install the Package
         run: | 
-          sudo egeoffrey-cli -d $(pwd)/egeoffrey install ./manifest.yml
-          sudo egeoffrey-cli -d $(pwd)/egeoffrey start
+          sudo egeoffrey-cli -d /tmp/egeoffrey install ./manifest.yml
+          sudo egeoffrey-cli -d /tmp/egeoffrey start
         
       - name: Collect Logs
         run: |
           sleep 30
-          sudo egeoffrey-cli -d $(pwd)/egeoffrey logs > egeoffrey.log
+          sudo egeoffrey-cli -d /tmp/egeoffrey logs > /tmp/egeoffrey.log
           
       - name: Check for errors
         run: |
-          sudo cat egeoffrey.log
-          if cat egeoffrey.log| sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'|grep ERROR: >/dev/null ; then exit 1; fi
+          sudo cat /tmp/egeoffrey.log
+          if cat /tmp/egeoffrey.log| sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'|grep ERROR: >/dev/null ; then exit 1; fi
 
       - name: Push the eGeoffrey Package to DockerHub
         run: | 
