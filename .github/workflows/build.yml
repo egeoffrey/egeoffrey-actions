@@ -2,6 +2,8 @@ name: Build and Publish eGeoffrey Package
 
 on:
   push:
+    branches:
+      - '**'
     tags-ignore:
       - '*.*'
   pull_request: 
