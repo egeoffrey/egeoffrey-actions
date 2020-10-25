@@ -1,0 +1,13 @@
+type: on_demand
+conditions: []
+schedule:
+  hour: 23
+  minute: 59
+  second: 0
+  trigger: cron
+severity: info
+text: "Today's average temperature has been %temperature_avg%, the minimum %temperature_min%, the maximum %temperature_max%"
+variables:
+  temperature_avg: examples/fcc_weather/temperature/day/avg
+  temperature_max: examples/fcc_weather/temperature/day/max
+  temperature_min: examples/fcc_weather/temperature/day/min
