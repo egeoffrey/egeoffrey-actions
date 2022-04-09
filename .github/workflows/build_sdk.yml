@@ -35,10 +35,10 @@ jobs:
 
       - name: Build the eGeoffrey SDK
         run: | 
-          egeoffrey-cli -o build_sdk alpine amd64 >> /tmp/egeoffrey.log 2>&1
-          egeoffrey-cli -o build_sdk alpine arm32v6 >> /tmp/egeoffrey.log 2>&1
-          egeoffrey-cli -o build_sdk raspbian amd64 >> /tmp/egeoffrey.log 2>&1
-          egeoffrey-cli -o build_sdk raspbian arm32v6 >> /tmp/egeoffrey.log 2>&1
+          egeoffrey-cli -o sdk build alpine amd64 >> /tmp/egeoffrey.log 2>&1
+          egeoffrey-cli -o sdk build alpine arm32v6 >> /tmp/egeoffrey.log 2>&1
+          egeoffrey-cli -o sdk build raspbian amd64 >> /tmp/egeoffrey.log 2>&1
+          egeoffrey-cli -o sdk build raspbian arm32v6 >> /tmp/egeoffrey.log 2>&1
 
       - name: Check for errors
         run: |
@@ -47,7 +47,7 @@ jobs:
 
       - name: Push the eGeoffrey SDK to DockerHub
         run: | 
-          egeoffrey-cli -f build_sdk alpine amd64
-          egeoffrey-cli -f build_sdk alpine arm32v6
-          egeoffrey-cli -f build_sdk raspbian amd64
-          egeoffrey-cli -f build_sdk raspbian arm32v6
+          egeoffrey-cli -f sdk build alpine amd64
+          egeoffrey-cli -f sdk build alpine arm32v6
+          egeoffrey-cli -f sdk build raspbian amd64
+          egeoffrey-cli -f sdk build raspbian arm32v6
